@@ -1,0 +1,101 @@
+<h1>Accueil</h1>
+<h2>Binding</h2>
+<ul>
+    <li>{{ tab[0] }}</li>
+    <li>{{ tab["1"] }}</li>
+    <li>{{ tab['2'] }}</li>
+    <li>{{ tab['3'] }}</li>
+</ul>
+<ul>
+    <li>Identifiant : {{ stagiaire.num }}</li>
+    <li>Nom : {{ stagiaire.nom }}</li>
+    <li>Prénom : {{ stagiaire.prenom }}</li>
+</ul>
+<p>{{ title }}</p>
+<p [innerHTML]="title"></p>
+<button (click)="direBonjour()">
+    cliquer
+</button>
+<h2>Directives</h2>
+<h3>*ngFor</h3>
+<ul>
+    <li *ngFor="let elt of tab">
+        {{ elt }}
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let elt of stagiaires">
+        {{ elt.num }} {{ elt.prenom }} {{ elt.nom }}
+    </li>
+</ul>
+
+<ul>
+    <li *ngFor="let elt of stagiaires; let i=index">
+        {{ i }} : {{ elt.num }} {{ elt.prenom }} {{ elt.nom }}
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let elt of stagiaires, index as i">
+        {{ i }} : {{ elt.num }} {{ elt.prenom }} {{ elt.nom }}
+    </li>
+</ul>
+<h3>*ngIf</h3>
+<p *ngIf="tab[0] % 2 == 0"> {{ tab[0] }} est pair</p>
+<p *ngIf="tab[1] % 2 == 0; else impair"> {{ tab[1] }} est pair</p>
+<ng-template #impair>
+    <p>{{ tab[1] }} est impair</p>
+</ng-template>
+<ul>
+    <ng-container *ngFor="let elt of tab">
+        <li *ngIf="elt % 2 == 0; else sinon"> {{ elt }} : pair</li>
+        <ng-template #sinon>
+            <li> {{ elt }} : impair</li>
+        </ng-template>
+    </ng-container>
+</ul>
+<ul>
+    <ng-container *ngFor="let elt of stagiaires; let i=index">
+        <li *ngIf="i % 2 == 0; else prenom"> {{ elt.nom }} </li>
+        <ng-template #prenom>
+            <li> {{ elt.prenom }}</li>
+        </ng-template>
+    </ng-container>
+</ul>
+<ul>
+    <ng-container *ngFor="let elt of stagiaires; let pair=even">
+        <li *ngIf="pair; else prenom"> {{ elt.nom }} </li>
+        <ng-template #prenom>
+            <li> {{ elt.prenom }}</li>
+        </ng-template>
+    </ng-container>
+</ul>
+<h3>*ngClass</h3>
+<ul>
+    <li *ngFor="let elt of tab; let i=index" [ngClass]="{'rouge': i % 2 == 0, 'bleu': i % 2 != 0}">
+        {{ elt }}
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let elt of tab; let i=index" [ngClass]="elt % 2 == 0 ? 'rouge' : 'vert'">
+        {{ elt }}
+    </li>
+</ul>
+<h3>Exercice récapitulatif</h3>
+<ul>
+    <ng-container *ngFor="let elt of moyennes; let i=index">
+        <li *ngIf="elt < 10; else bien">
+            {{ elt }} : échec
+        </li>
+        <ng-template #bien>
+            <li *ngIf="elt < 15; else excellent">
+                {{ elt }} : bien
+            </li>
+        </ng-template>
+        <ng-template #excellent>
+            <li>
+                {{ elt }} : excellent
+            </li>
+        </ng-template>
+    </ng-container>
+
+</ul>
