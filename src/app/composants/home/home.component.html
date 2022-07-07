@@ -99,3 +99,24 @@
     </ng-container>
 
 </ul>
+
+<h3>Liens avec paramètres</h3>
+
+<p>
+    <a routerLink="/stagiaire/washington/denzel">Visiter la page de D. W.</a>
+</p>
+<p>
+    <a [routerLink]="['/stagiaire', nom, prenom]">Visiter la page de D. W.</a>
+</p>
+
+<p>
+    <a routerLink="/adresse" [queryParams]="{rue: streetName, ville: city, codePostal: zipCode}">
+        Visitez les alpes maritimes
+    </a>
+</p>
+
+<h3>Redirection</h3>
+
+<button (click)="visiter()">
+    Rendre visite à Mitroglou
+</button>
