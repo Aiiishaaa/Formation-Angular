@@ -8,6 +8,7 @@ import { Stagiaire } from 'src/app/interfaces/stagiaire';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  maDate = Date.now();
   nom = "Washington";
   prenom = "Denzel";
   city = "Nice"

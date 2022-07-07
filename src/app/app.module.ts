@@ -11,6 +11,9 @@ import { HomeComponent } from './composants/home/home.component';
 import { HeaderComponent } from './composants/header/header.component';
 import { TableauComponent } from './composants/tableau/tableau.component';
 import { CalculComponent } from './composants/calcul/calcul.component';
+import { GetCharPipe } from './pipes/get-char.pipe';
+import { EvenValuePipe } from './pipes/even-value.pipe';
+import { SubStrPipe } from './pipes/sub-str.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { CalculComponent } from './composants/calcul/calcul.component';
     HomeComponent,
     HeaderComponent,
     TableauComponent,
-    CalculComponent
+    CalculComponent,
+    GetCharPipe,
+    EvenValuePipe,
+    SubStrPipe
   ],
   imports: [
     BrowserModule,

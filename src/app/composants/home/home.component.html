@@ -132,3 +132,32 @@
 <span style="color: skyblue;" class="fa-3x">
     <i class="fas fa-stroopwafel fa-spin"></i>
 </span>
+
+<h3>Pipes</h3>
+<p>{{ title | uppercase }}</p>
+<p>{{ title | titlecase }}</p>
+<p>{{ maDate | date:"d MMM y" }}</p>
+<p>{{ maDate | date:"d MM y" }}</p>
+<p>{{ maDate | date:"d MMM y" | uppercase }}</p>
+<p>{{ stagiaire | json }}</p>
+
+<!-- <ul>
+    <li *ngFor="let elt of stagiaire | keyvalue">
+        {{ elt.key }} {{ elt.value}}
+    </li>
+</ul> -->
+
+<h3>Pipe : getchar</h3>
+<p>{{ title | getchar }}</p>
+<p>{{ title | getchar:2 }}</p>
+<p>{{ "bonjour" | getchar }}</p>
+<p>{{ "bonjour" | getchar:2 }}</p>
+<h3>Pipe : evenvalue</h3>
+<ul>
+    <li *ngFor="let elt of tab | evenvalue ">
+        {{ elt }}
+    </li>
+</ul>
+<h3>Pipe : sub-str </h3>
+<p>{{ "bonjour" | substr:3 }}</p>
+<p>{{ "bonjour" | substr:3:5 }}</p>
