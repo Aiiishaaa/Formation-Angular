@@ -1,4 +1,18 @@
 {
+  "utilisateurs": [
+    {
+      "id": 1,
+      "nom": "wick",
+      "prenom": "john",
+      "motDePasse": "wick"
+    },
+    {
+      "id": 2,
+      "nom": "travolta",
+      "prenom": "john",
+      "motDePasse": "travolta"
+    }
+  ],
   "produits": [
     {
       "id": 1,

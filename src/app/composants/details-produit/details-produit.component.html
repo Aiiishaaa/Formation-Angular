@@ -1,69 +1,75 @@
-<div class='card'>
-  <div class='card-header'>
-    <h2> Détail du produit :</h2>
+<div class="container">
+
+  <div class='card'>
+    <div class='card-header'>
+      <h2> Détail du produit :</h2>
+    </div>
+
+    <div class='card-body' *ngIf='produit'>
+      <div class='row'>
+        <div class='col-md-8'>
+          <div class='row'>
+            <div class='col-md-4'>Designantion:</div>
+            <div class='col-md-8'>{{produit.designation | uppercase }}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'> Quantité en stock :</div>
+            <div class='col-md-4'>{{produit. quantiteEnStock}} produit(s) restant(s)</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Prix :</div>
+            <div class='col-md-4'>{{ produit.prixUnitaire|currency:'EUR':'symbol'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <img class='center-block img-responsive' [style.width.px]='20' [style.margin.px]='50' [src]='produit.chemin'
+          [title]='produit.designation'>
+
+      </div>
+    </div>
+
+    <div class='card-header'>
+      <h2> Modifier le produit :</h2>
+    </div>
+
+
+    <form class="container" (ngSubmit)="modifierProduit()" #monForm="ngForm">
+      <div class="mb-3">
+        <label for="id" class="form-label">Identifiant</label>
+        <input type="number" class="form-control" id="id" name="id" [(ngModel)]="produit.id" readonly required
+          #id="ngModel">
+        <div [hidden]="id.valid || id.pristine" class="text-danger text-center">
+          L'identifiant est obligatoire
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="designation" class="form-label">Désignation</label>
+        <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="produit.designation"
+          required minlength="3" maxlength="30" #designation="ngModel">
+        <div [hidden]="designation.valid  || designation.pristine" class="text-danger text-center">
+          La désignation est obligatoire et doit contenir entre 3 et 30 caractères
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="prixUnitaire" class="form-label">Prix unitaire </label>
+        <input type="number" class="form-control" id="prixUnitaire" name="prixUnitaire"
+          [(ngModel)]="produit.prixUnitaire" required min="10" max="1000" #prixUnitaire="ngModel">
+        <div [hidden]="prixUnitaire.valid  || prixUnitaire.pristine" class="text-danger text-center">
+          Le prix unitaire est obligatoire et la valeur doit être comprise entre 10 et 1000
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="quantiteEnStock" class="form-label">Quantité </label>
+        <input type="number" class="form-control" id="quantiteEnStock" name="quantiteEnStock"
+          [(ngModel)]="produit.quantiteEnStock" required #quantiteEnStock="ngModel">
+        <div [hidden]="quantiteEnStock.valid  || quantiteEnStock.pristine" class="text-danger text-center">
+          La quantité est obligatoire
+        </div>
+      </div>
+      <button class='btn btn-outline-secondary' [disabled]="monForm.invalid" style='width:1270px'
+        (click)='modifierProduit()'>
+        <i class='fa fa-chevron-left'></i> Modifier
+      </button>
+    </form>
   </div>
-
-  <div class='card-body' *ngIf='produit'>
-    <div class='row'>
-      <div class='col-md-8'>
-        <div class='row'>
-          <div class='col-md-4'>Designantion:</div>
-          <div class='col-md-8'>{{produit.designation | uppercase }}</div>
-        </div>
-        <div class='row'>
-          <div class='col-md-4'> Quantité en stock :</div>
-          <div class='col-md-4'>{{produit. quantiteEnStock}} produit(s) restant(s)</div>
-        </div>
-        <div class='row'>
-          <div class='col-md-4'>Prix :</div>
-          <div class='col-md-4'>{{ produit.prixUnitaire|currency:'EUR':'symbol'}}</div>
-        </div>
-      </div>
-    </div>
-    <div class='col-md-4 '>
-      <img class='center-block img-responsive' [style.width.px]='20' [style.margin.px]='20' [src]='produit.chemin'
-        [title]='produit.designation'>
-    </div>
-  </div>
-
-
-
-  <h2 class="container">Modifier le produit</h2>
-  <form class="container" (ngSubmit)="modifierProduit()" #monForm="ngForm">
-    <div class="mb-3">
-      <label for="id" class="form-label">Identifiant</label>
-      <input type="number" class="form-control" id="id" name="id" [(ngModel)]="produit.id" readonly required
-        #id="ngModel">
-      <div [hidden]="id.valid || id.pristine" class="text-danger text-center">
-        L'identifiant est obligatoire
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="designation" class="form-label">Désignation</label>
-      <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="produit.designation"
-        required minlength="3" maxlength="30" #designation="ngModel">
-      <div [hidden]="designation.valid  || designation.pristine" class="text-danger text-center">
-        La désignation est obligatoire et doit contenir entre 3 et 30 caractères
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="prixUnitaire" class="form-label">Prix unitaire </label>
-      <input type="number" class="form-control" id="prixUnitaire" name="prixUnitaire" [(ngModel)]="produit.prixUnitaire"
-        required min="10" max="1000" #prixUnitaire="ngModel">
-      <div [hidden]="prixUnitaire.valid  || prixUnitaire.pristine" class="text-danger text-center">
-        Le prix unitaire est obligatoire et la valeur doit être comprise entre 10 et 1000
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="quantiteEnStock" class="form-label">Quantité </label>
-      <input type="number" class="form-control" id="quantiteEnStock" name="quantiteEnStock"
-        [(ngModel)]="produit.quantiteEnStock" required #quantiteEnStock="ngModel">
-      <div [hidden]="quantiteEnStock.valid  || quantiteEnStock.pristine" class="text-danger text-center">
-        La quantité est obligatoire
-      </div>
-    </div>
-    <button class='btn btn-outline-secondary' [disabled]="monForm.invalid" style='width:1300px'
-      (click)='modifierProduit()'>
-      <i class='fa fa-chevron-left'></i> Modifier
-    </button>
-  </form>
