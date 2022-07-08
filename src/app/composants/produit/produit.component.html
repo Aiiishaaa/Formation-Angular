@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Produit</h2>
+        </div>
+    </div>
+</div>
+<form class="container" (ngSubmit)="ajouterProduit()" #monForm="ngForm">
+    <div class="mb-3">
+        <label for="id" class="form-label">Identifiant :</label>
+        <input type="number" class="form-control" id="id" name="id" [(ngModel)]="produit.id" required #id="ngModel">
+        <div [hidden]="id.valid || id.pristine" class="text-danger text-center" >
+            L'identifiant est obligatoire !
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="designation" class="form-label">Désignation :</label>
+        <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="produit.designation" required minlength="3" maxlength="30" #designation="ngModel">
+        <div [hidden]="designation.valid || designation.pristine" class="text-danger text-center" >
+            La désignation est obligatoire et doit contenir entre 3 et 30 caractères!
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="prixUnitaire" class="form-label">Prix unitaire : </label>
+       <input type="number" class="form-control" id="prixUnitaire" name="prixUnitaire" [(ngModel)]="produit.prixUnitaire" required min="10" max="1000" #prix="ngModel">  <!-- {{prix.className}}  -->
+        <div [hidden]="prix.valid || prix.pristine" class="text-danger text-center" >
+            Le prix unitaire est obligatoire et la valeur doit être comprise entre 10 et 1000
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="quantiteEnStock" class="form-label">Quantité :</label>
+        <input type="number" class="form-control" id="quantiteEnStock" name="quantiteEnStock" [(ngModel)]="produit.quantiteEnStock" required #quantiteEnStock="ngModel">
+        <div [hidden]="quantiteEnStock.valid || quantiteEnStock.pristine" class="text-danger text-center" >
+            La quantité est obligatoire !
+        </div>
+    </div>
+    <button [disabled]="monForm.invalid" class="btn btn-primary ">Afficher</button>
+</form>
+<div class="container my-3">
+    <h2>Liste de produits</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Identifiant</th>
+                <th>Désignation</th>
+                <th>Prix unitaire</th>
+                <th>Quantité</th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let elt of produits">
+                <td>{{ elt.id }}</td>
+                <td>{{ elt.designation }}</td>
+                <td>{{ elt.prixUnitaire }}</td>
+                <td>{{ elt.quantiteEnStock }}</td>
+                <td>
+                    <button class="btn" (click)="supprimerProduit(elt.id)">
+                        <i style="color:tomato" class="fas fa-trash-alt"></i>
+                    </button>    
+                    <a [routerLink]="['/produit', elt.id]">
+                        <i class="far fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

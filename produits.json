@@ -1,0 +1,22 @@
+{
+  "produits": [
+    {
+      "id": 1,
+      "designation": "Tablette",
+      "prixUnitaire": 70,
+      "quantiteEnStock": 6
+    },
+    {
+      "id": 2,
+      "designation": "écran",
+      "prixUnitaire": 20,
+      "quantiteEnStock": 180
+    },
+    {
+      "id": 3,
+      "designation": "souris",
+      "prixUnitaire": 12,
+      "quantiteEnStock": 300
+    }
+  ]
+}
